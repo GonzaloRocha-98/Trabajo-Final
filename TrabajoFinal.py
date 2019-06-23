@@ -6,6 +6,14 @@ import random
 import string
 
 engine = Wiktionary(license=None, language='es')
+<<<<<<< HEAD
+=======
+dic = {'lista': [], 'sustantivo': [], 'adjetivo':[], 'verbo': [], 'reporte': [], 'def':{}}
+sustantivos = []
+adjetivos = []
+verbos = []
+defi = []
+>>>>>>> 029884f036ce91b6f844bb743d5e6d6addd30d52
 
 class Palabras():
 
@@ -88,6 +96,7 @@ def abrir_archivo():
             sg.PopupOK('No tiene permisos para abrir este archivo')
     return lista
 
+<<<<<<< HEAD
 def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, ayListPal, lyf):
     tam_pal = 0
     lista = []
@@ -125,6 +134,7 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
                 fila = random.choice([True, False])
                 if fila == False:
                     k+=1
+>>>>>>> 029884f036ce91b6f844bb743d5e6d6addd30d52
             else:
                 fila = True
             i = 0
@@ -133,6 +143,7 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
             for col in range(tam_pal+3):
                 columna = False
                 if fila == True:
+<<<<<<< HEAD
                     columna = random.choice([True, False])                    
                 if (columna == True) or (fila == True and j == 3):
                     if c < total:
@@ -146,6 +157,7 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
                     lista[-1].setCord((col, row), palabra[i])
                     g.DrawText('{}'.format(palabra[i]), letter_location, font='Courier 25')
                     pos[(col,row)].append(palabra[i])
+>>>>>>> 029884f036ce91b6f844bb743d5e6d6addd30d52
                     i+=1 
                     fila = False
                 else:
@@ -155,6 +167,7 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
                         letra = random.choice(string.ascii_lowercase)
                     letter_location = (col * BOX_SIZE + 18, row * BOX_SIZE + 17)
                     g.DrawText('{}'.format(letra), letter_location, font='Courier 25')
+<<<<<<< HEAD
                     pos[(col,row)].append(letra)
                     cont+=1
                     j+=1
@@ -170,12 +183,14 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
                 columna = random.choice([True, False])
                 if columna == False:
                     k+=1
+>>>>>>> 029884f036ce91b6f844bb743d5e6d6addd30d52
             else:
                 fila = True
             i = 0
             j = 0
             palabra = ''
             for row in range(tam_pal+3):
+<<<<<<< HEAD
                 fila = False
                 if columna == True:
                     fila = random.choice([True, False])
@@ -193,6 +208,7 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
                     pos[(col,row)].append(palabra[i])
                     i+=1 
                     columna = False
+>>>>>>> 029884f036ce91b6f844bb743d5e6d6addd30d52
                 else:
                     if mayus == True:
                         letra = random.choice(string.ascii_uppercase)
@@ -200,6 +216,7 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
                         letra = random.choice(string.ascii_lowercase)
                     letter_location = (col * BOX_SIZE + 18, row * BOX_SIZE + 17)
                     g.DrawText('{}'.format(letra), letter_location, font='Courier 25')
+<<<<<<< HEAD
                     pos[(col,row)].append(letra)
                     cont+=1
                     j+=1
@@ -208,12 +225,14 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
     while True:
         event, values = window.Read()
         print(pos)
+>>>>>>> 029884f036ce91b6f844bb743d5e6d6addd30d52
         print(event, values)
         mouse = values['_GRAPH_']
         if event == None or event == 'Salir':
             window.Close()
             break
         if event == 'Sig.\n definición':
+<<<<<<< HEAD
             window.FindElement ('def').Update(value= lista[h].getDefi())
             h+=1
             if h == len(lista):
@@ -327,6 +346,12 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
 
 dic = []
 reporte = []
+
+
+
+
+
+>>>>>>> 029884f036ce91b6f844bb743d5e6d6addd30d52
 tipografias = ('Arial', 'Courier', 'Comic', 'Fixedsys', 'Times', 'Verdana', 'Helvetica')
 oficinas = ('Oficina 1', 'Oficina 2')
 palabras = []
@@ -381,6 +406,7 @@ while True:
         window.FindElement('ofi').Update(values=list(arch[1].keys()))
         window.FindElement('dir').Update(arch[0])
     if event == 'Jugar':
+<<<<<<< HEAD
         print(values['cantSus'])
         if values['cantSus'] != '0':
             i = 0
@@ -432,5 +458,7 @@ while True:
         juego(palabras, values['cantSus'], values['cantAdj'], values['cantVerb'], colorSus, colorAdj, colorVerb, values['mayus'], values['H'], values['ayDef'], values['ayListPal'], values['l&f'])
         break
 
+>>>>>>> 029884f036ce91b6f844bb743d5e6d6addd30d52
         
         
+
