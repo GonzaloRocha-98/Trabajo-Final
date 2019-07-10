@@ -23,13 +23,13 @@ class Temperatura:
     def datos_sensor(self):
       """ Devuelve un diccionario con la temperatura y humedad """
       humedad, temperatura = Adafruit_DHT.read_retry(self._sensor, self._data_pin)
-      return {'temp': temperatura, 'humedad': humedad, "fecha": time.strftime("%x")}
+      return {'temp': temperatura, 'humedad': humedad, "fecha": time.strftime("%a %d %b, %y")}
 
 def guardar_datos(ofi, datos):
     try:
         with open("datos-oficinas.json") as arch:
             dato = json.load(arch)
-        if ofi in datos:
+        if ofi in dato:
             dato[ofi].append(datos)
         else:
             dato.update({ofi:[datos]})
