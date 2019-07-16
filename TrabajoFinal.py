@@ -109,9 +109,8 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
         if tam_pal < len(i.getPal()):
             tam_pal = len(i.getPal())
     total_letras = (total*2)*(tam_pal+3)
-    print(tam_pal)
-    print(len(lis))
-    
+
+    #creacion de la sopa de letras
     sg.ChangeLookAndFeel(lyf)
     
     layout = [
@@ -126,10 +125,12 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
     g = window.FindElement ('_GRAPH_')
     
     if H == True:
-        for row in range(total*2):
+        for row in range(total*2):          #Creacion de la grilla
             for col in range(tam_pal+3):
                     g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3), (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black', fill_color= '#ffffff')
                     pos.update({(col,row):['#ffffff']})
+
+        #colocacion de las letras
         k = 0
         for row in range(total*2):
             if k < (total//2):
@@ -170,6 +171,7 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
                     cont+=1
                     j+=1
     else:
+        #Orientación vertical
         for col in range(total*2):
             for row in range(tam_pal+3):
                     g.DrawRectangle((col * BOX_SIZE + 5, row * BOX_SIZE + 3), (col * BOX_SIZE + BOX_SIZE + 5, row * BOX_SIZE + BOX_SIZE + 3), line_color='black', fill_color= '#ffffff')
@@ -247,7 +249,7 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
             color = colorAdj
         if event == 'Verbos':
             color = colorVerb
-        if event == 'Verificar':
+        if event == 'Verificar': #verificacion de la sopa de letras resuelta
             if H == True:
                 i = 0
                 ganar = True
@@ -371,14 +373,12 @@ window = sg.Window('Trabajo Final').Layout(layout1).Finalize()
 
 while True:
     event, values = window.Read()
-    print(values)
     if event == None or event == 'Salir':
         window.Close()
         break
     if event == 'Agregar':
         if values['ingreso'] != '':
             dic, reporte = verificar_palabra(values['ingreso'], dic, reporte)
-            print(dic[0].getPal())
             window.FindElement('lista').Update([i.getPal() for i in dic])
             window.FindElement('ingreso').Update('')
             window.FindElement('cantSus').Update(values=[i for i in range(len([j for j in dic if j.getClase() == 'sustantivo'])+1)])
@@ -407,17 +407,14 @@ while True:
         window.FindElement('ofi').Update(values=list(arch[1].keys()))
         window.FindElement('dir').Update(arch[0])
         if arch != None:
-            print(arch[1])
             landf = elegirColor(arch[1][values['ofi']])
         else:
             landf = 'SystemDefault'
     if event == 'Jugar':
-        print(values['cantSus'])
         if values['cantSus'] != '0':
             i = 0
             while i < int(values['cantSus']):
                 ran = random.randrange(len(dic))
-                print(dic[ran].getClase())
                 if dic[ran].getClase() == 'sustantivo':
                     if values['mayus'] == True:
                         dic[ran].aMayus()
