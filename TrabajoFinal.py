@@ -8,6 +8,7 @@ import string
 engine = Wiktionary(license=None, language='es')
 
 class Palabras():
+    """Clase de la palabras ingresadas"""
 
     def __init__(self, pal, clase, defi):
         self.__pal = pal
@@ -42,6 +43,9 @@ class Palabras():
     
 
 def verificar_palabra(palabra, dic, reporte):
+    """Verifica la palabra en Wikcionario, en caso de no encontrarla se crea un reporte. Si la palabra se encuentra
+        en pattern, se ingresa una definición y se agrega a la lista. Si existen en los 2 se toma como correcto el
+        de Wikcionario. Si no existe en ninguno de los 2, no se agrega"""
     claves = {'NN': 'sustantivo' , 'JJ' : 'adjetivo' , 'VB': 'verbo'}
     try:
         article = engine.search(palabra)
@@ -66,6 +70,7 @@ def verificar_palabra(palabra, dic, reporte):
     return dic, reporte
 
 def redactar_reporte(lista):
+    """Se redacta el reporte de las palabras no encontradas o cuando se ingresa una definición manualmente"""
     if (len(lista) == 0):
         texto = 'No hay reportes'
     else:
@@ -74,6 +79,7 @@ def redactar_reporte(lista):
     return texto
 
 def abrir_archivo():
+    """Se selecciona y abre el archivo JSON con los datos de temperatura y humedad de las distintas oficinas."""
     lista = []
     while True:
         try:
@@ -89,6 +95,8 @@ def abrir_archivo():
     return lista
 
 def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, ayListPal, lyf):
+    """crea la ventana de la sopa de letras, crea la grilla, coloca las palabras y las letras en la gilla.
+        Tambien se realiza la seleccion de las letras y la verificacion."""
     tam_pal = 0
     lista = []
     total = len(lis)
@@ -174,7 +182,7 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
                 if columna == False:
                     k+=1
             else:
-                fila = True
+                columna = True
             i = 0
             j = 0
             palabra = ''
@@ -326,6 +334,8 @@ def juego (lis, sus, adj, verb, colorSus, colorAdj, colorVerb, mayus, H, ayDef, 
                     sg.Popup('FELICITACIONES!!! GANASTE!')
 
 def elegirColor(lista):
+    """dependiendo a la temperatura que extrae del archivo JSON,
+        selecciona el color para el look & feel"""
     for i in lista:
         total = i['temp']
     temp = total/len(lista)
@@ -338,7 +348,7 @@ def elegirColor(lista):
     return color
     
 
-
+"""----------------------------------------------Programa Principal----------------------------------------------"""
 
 dic = []
 reporte = []
