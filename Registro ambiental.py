@@ -14,7 +14,7 @@ Resistencia 10K entre VCC y DATA
 """
 
 class Temperatura:
-
+    """Clase del sensor de temperatura y humedad con sus configuraciones"""
     def __init__(self, pin=17, sensor=Adafruit_DHT.DHT11):
         # Usamos el DHT11 que es compatible con el DHT12 
         self._sensor = sensor 
