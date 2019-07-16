@@ -25,6 +25,9 @@ class Temperatura:
       humedad, temperatura = Adafruit_DHT.read_retry(self._sensor, self._data_pin)
       return {'temp': temperatura, 'humedad': humedad, "fecha": time.strftime("%a %d %b, %y")}
 
+"""--------------------------------------------------------------------------Progrma Principal--------------------------------------------------------------------------"""
+
+
 def guardar_datos(ofi, datos):
     try:
         with open("datos-oficinas.json") as arch:
